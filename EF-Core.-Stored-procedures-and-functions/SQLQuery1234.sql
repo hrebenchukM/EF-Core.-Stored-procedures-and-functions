@@ -251,10 +251,7 @@ VALUES
      delete from products where name like @name 
 	 go
 
-    declare @name nvarchar(255)
-    set @name = '%Visual%Basic%'
-    execute Delete_Product @name 
-    go
+  
         
 
 
