@@ -437,70 +437,47 @@ go
    
 
 	
+create view sum_of_quantity as
+  SELECT SUM(quantity) as TotalQuantity, 
+  (SELECT name FROM product_types WHERE id = product_type_id) as ProductType
+  FROM products
+  GROUP BY product_type_id;
+  go
+
+create view cost_cost_per_type as
+  SELECT product_type_id,
+  (SELECT name FROM product_types WHERE id = product_type_id) as ProductType,
+   min(cost) AS MinCost,
+   max(cost) AS MaxCost
+   FROM products
+   GROUP BY product_type_id;
+   GO
+
+  create procedure MaxCostProduct
+@productType  nvarchar(255) output, 
+@maxCost decimal(10, 2) output
+as
+select @maxCost = max(MaxCost)
+from cost_cost_per_type;
+select @productType = ProductType
+from cost_cost_per_type
+where MaxCost = @maxCost;
+go
+
+create procedure MinCostProduct
+@productType  nvarchar(255) output, 
+@minCost decimal(10, 2) output
+as
+select @minCost = min(MinCost)
+ from cost_cost_per_type;
+ select @productType = ProductType
+ from cost_cost_per_type
+ where MinCost = @minCost;
+go
 
 
-			
-          
+
 	
-	 
-         
-
-
-
-		
-           
-             create view sum_of_quantity as
-             SELECT SUM(quantity) as TotalQuantity, 
-            (SELECT name FROM product_types WHERE id = product_type_id) as ProductType
-            FROM products
-            GROUP BY product_type_id;
-            go
-
-
-			create view cost_cost_per_type as
-            SELECT product_type_id,
-           (SELECT name FROM product_types WHERE id = product_type_id) as ProductType,
-		    min(cost) AS MinCost,
-            max(cost) AS MaxCost
-            FROM products
-            GROUP BY product_type_id;
-            GO
-
-
-			create procedure MaxCostProduct
-            @productType  nvarchar(255) output, 
-            @maxCost decimal(10, 2) output
-              as
-              select @maxCost = max(MaxCost)
-              from cost_cost_per_type;
-              select @productType = ProductType
-				from cost_cost_per_type
-				where MaxCost = @maxCost;
-				go
-
-				create procedure MinCostProduct
-            @productType  nvarchar(255) output, 
-            @minCost decimal(10, 2) output
-              as
-              select @minCost = min(MinCost)
-              from cost_cost_per_type;
-              select @productType = ProductType
-				from cost_cost_per_type
-				where MinCost = @minCost;
-				go
-
-
-
-				  declare @productType nvarchar(255), @maxCost int;
-            execute MaxCostProduct @productType output, @maxCost output;
-            select 'Тип продукции:', @productType, 'Максимальная себестоимость:', @maxCost;
-            go
-
-				  declare @productType nvarchar(255), @minCost int;
-            execute MinCostProduct @productType output, @minCost output;
-            select 'Тип продукции:', @productType, 'Минимальная себестоимость:', @minCost;
-            go
-
 
               create procedure MaxQuantity
 			  @productType nvarchar(255) output, 
@@ -514,11 +491,7 @@ go
               where TotalQuantity = @totalQuantity;
 			  go
 
-             declare @productType nvarchar(255), @totalQuantity int;
-            execute MaxQuantity @productType output, @totalQuantity output;
-            select 'Тип продукции:', @productType, 'Максимальное количество:', @totalQuantity;
-            go
-
+       
             
 			  create procedure MinQuantity
 			  @productType nvarchar(255) output, 
@@ -532,13 +505,7 @@ go
               where TotalQuantity = @totalQuantity;
 			  go
 
-			     declare @productType nvarchar(255), @totalQuantity int;
-            execute MinQuantity @productType output, @totalQuantity output;
-            select 'Тип продукции:', @productType, 'Минимальное количество:', @totalQuantity;
-            go
-
-        
-
+	
 
 
 
