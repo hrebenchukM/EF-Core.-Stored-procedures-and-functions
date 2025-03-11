@@ -56,8 +56,6 @@
             buttonAddType = new Button();
             dataGridView2 = new DataGridView();
             tabPage3 = new TabPage();
-            buttonshowbymanager = new Button();
-            comboBoxManager = new ComboBox();
             label5 = new Label();
             textBoxManagers = new TextBox();
             buttonDeleteManager = new Button();
@@ -65,10 +63,32 @@
             buttonAddManger = new Button();
             dataGridView3 = new DataGridView();
             tabPage4 = new TabPage();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
+            label6 = new Label();
+            textBoxCustomer = new TextBox();
+            buttonDeleteCustomer = new Button();
+            buttonUpdateCustomer = new Button();
+            buttonAddCustomer = new Button();
             dataGridView4 = new DataGridView();
+            tabPage5 = new TabPage();
+            buttonLatestSale = new Button();
+            buttonshowbycustomers = new Button();
+            comboBoxCustomers = new ComboBox();
+            comboBoxManagers = new ComboBox();
+            buttonshowbymanagers = new Button();
+            label12 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            textBoxPrice = new TextBox();
+            textBoxCount = new TextBox();
+            label11 = new Label();
+            label10 = new Label();
+            textBoxCustomerName = new TextBox();
+            label7 = new Label();
+            textBoxManager = new TextBox();
+            label9 = new Label();
+            buttonDeleteSale = new Button();
+            buttonUpdateSale = new Button();
+            buttonAddSale = new Button();
+            dataGridView5 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -78,6 +98,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -97,11 +119,12 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1059, 425);
+            tabControl1.Size = new Size(1059, 457);
             tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -127,7 +150,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1051, 392);
+            tabPage1.Size = new Size(1051, 424);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Канцтовары";
             tabPage1.UseVisualStyleBackColor = true;
@@ -261,7 +284,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(351, 221);
+            label1.Location = new Point(351, 222);
             label1.Name = "label1";
             label1.Size = new Size(77, 20);
             label1.TabIndex = 6;
@@ -304,7 +327,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1051, 392);
+            tabPage2.Size = new Size(1051, 424);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Типы канцтоваров";
             tabPage2.UseVisualStyleBackColor = true;
@@ -371,8 +394,6 @@
             // 
             // tabPage3
             // 
-            tabPage3.Controls.Add(buttonshowbymanager);
-            tabPage3.Controls.Add(comboBoxManager);
             tabPage3.Controls.Add(label5);
             tabPage3.Controls.Add(textBoxManagers);
             tabPage3.Controls.Add(buttonDeleteManager);
@@ -381,29 +402,10 @@
             tabPage3.Controls.Add(dataGridView3);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1051, 392);
+            tabPage3.Size = new Size(1051, 424);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Менеджеры по продажам";
             tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // buttonshowbymanager
-            // 
-            buttonshowbymanager.Cursor = Cursors.Hand;
-            buttonshowbymanager.Location = new Point(20, 327);
-            buttonshowbymanager.Name = "buttonshowbymanager";
-            buttonshowbymanager.Size = new Size(234, 52);
-            buttonshowbymanager.TabIndex = 23;
-            buttonshowbymanager.Text = "фильтрации товаров по менеджеру(F)";
-            buttonshowbymanager.UseVisualStyleBackColor = true;
-            buttonshowbymanager.Click += buttonshowbymanager_Click;
-            // 
-            // comboBoxManager
-            // 
-            comboBoxManager.FormattingEnabled = true;
-            comboBoxManager.Location = new Point(8, 214);
-            comboBoxManager.Name = "comboBoxManager";
-            comboBoxManager.Size = new Size(304, 28);
-            comboBoxManager.TabIndex = 22;
             // 
             // label5
             // 
@@ -467,46 +469,67 @@
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(button5);
-            tabPage4.Controls.Add(button6);
-            tabPage4.Controls.Add(button7);
+            tabPage4.Controls.Add(label6);
+            tabPage4.Controls.Add(textBoxCustomer);
+            tabPage4.Controls.Add(buttonDeleteCustomer);
+            tabPage4.Controls.Add(buttonUpdateCustomer);
+            tabPage4.Controls.Add(buttonAddCustomer);
             tabPage4.Controls.Add(dataGridView4);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1051, 392);
+            tabPage4.Size = new Size(1051, 424);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Фирмы покупатели";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // label6
             // 
-            button5.Cursor = Cursors.Hand;
-            button5.Location = new Point(927, 214);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 67);
-            button5.TabIndex = 22;
-            button5.Text = "Удалить";
-            button5.UseVisualStyleBackColor = true;
+            label6.AutoSize = true;
+            label6.Location = new Point(351, 221);
+            label6.Name = "label6";
+            label6.Size = new Size(77, 20);
+            label6.TabIndex = 24;
+            label6.Text = "Название";
             // 
-            // button6
+            // textBoxCustomer
             // 
-            button6.Cursor = Cursors.Hand;
-            button6.Location = new Point(827, 214);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 67);
-            button6.TabIndex = 21;
-            button6.Text = "Обновить";
-            button6.UseVisualStyleBackColor = true;
+            textBoxCustomer.Location = new Point(486, 214);
+            textBoxCustomer.Name = "textBoxCustomer";
+            textBoxCustomer.Size = new Size(189, 27);
+            textBoxCustomer.TabIndex = 23;
             // 
-            // button7
+            // buttonDeleteCustomer
             // 
-            button7.Cursor = Cursors.Hand;
-            button7.Location = new Point(727, 214);
-            button7.Name = "button7";
-            button7.Size = new Size(94, 67);
-            button7.TabIndex = 20;
-            button7.Text = "Добавить";
-            button7.UseVisualStyleBackColor = true;
+            buttonDeleteCustomer.Cursor = Cursors.Hand;
+            buttonDeleteCustomer.Location = new Point(927, 214);
+            buttonDeleteCustomer.Name = "buttonDeleteCustomer";
+            buttonDeleteCustomer.Size = new Size(94, 67);
+            buttonDeleteCustomer.TabIndex = 22;
+            buttonDeleteCustomer.Text = "Удалить";
+            buttonDeleteCustomer.UseVisualStyleBackColor = true;
+            buttonDeleteCustomer.Click += buttonDeleteCustomer_Click;
+            // 
+            // buttonUpdateCustomer
+            // 
+            buttonUpdateCustomer.Cursor = Cursors.Hand;
+            buttonUpdateCustomer.Location = new Point(827, 214);
+            buttonUpdateCustomer.Name = "buttonUpdateCustomer";
+            buttonUpdateCustomer.Size = new Size(94, 67);
+            buttonUpdateCustomer.TabIndex = 21;
+            buttonUpdateCustomer.Text = "Обновить";
+            buttonUpdateCustomer.UseVisualStyleBackColor = true;
+            buttonUpdateCustomer.Click += buttonUpdateCustomer_Click;
+            // 
+            // buttonAddCustomer
+            // 
+            buttonAddCustomer.Cursor = Cursors.Hand;
+            buttonAddCustomer.Location = new Point(727, 214);
+            buttonAddCustomer.Name = "buttonAddCustomer";
+            buttonAddCustomer.Size = new Size(94, 67);
+            buttonAddCustomer.TabIndex = 20;
+            buttonAddCustomer.Text = "Добавить";
+            buttonAddCustomer.UseVisualStyleBackColor = true;
+            buttonAddCustomer.Click += buttonAddCustomer_Click;
             // 
             // dataGridView4
             // 
@@ -519,16 +542,216 @@
             dataGridView4.Size = new Size(1040, 191);
             dataGridView4.TabIndex = 1;
             // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(buttonLatestSale);
+            tabPage5.Controls.Add(buttonshowbycustomers);
+            tabPage5.Controls.Add(comboBoxCustomers);
+            tabPage5.Controls.Add(comboBoxManagers);
+            tabPage5.Controls.Add(buttonshowbymanagers);
+            tabPage5.Controls.Add(label12);
+            tabPage5.Controls.Add(dateTimePicker1);
+            tabPage5.Controls.Add(textBoxPrice);
+            tabPage5.Controls.Add(textBoxCount);
+            tabPage5.Controls.Add(label11);
+            tabPage5.Controls.Add(label10);
+            tabPage5.Controls.Add(textBoxCustomerName);
+            tabPage5.Controls.Add(label7);
+            tabPage5.Controls.Add(textBoxManager);
+            tabPage5.Controls.Add(label9);
+            tabPage5.Controls.Add(buttonDeleteSale);
+            tabPage5.Controls.Add(buttonUpdateSale);
+            tabPage5.Controls.Add(buttonAddSale);
+            tabPage5.Controls.Add(dataGridView5);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1051, 424);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Продажи";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // buttonLatestSale
+            // 
+            buttonLatestSale.Location = new Point(727, 381);
+            buttonLatestSale.Name = "buttonLatestSale";
+            buttonLatestSale.Size = new Size(250, 29);
+            buttonLatestSale.TabIndex = 43;
+            buttonLatestSale.Text = "Последняя продажа";
+            buttonLatestSale.UseVisualStyleBackColor = true;
+            buttonLatestSale.Click += buttonLatestSale_Click;
+            // 
+            // buttonshowbycustomers
+            // 
+            buttonshowbycustomers.Cursor = Cursors.Hand;
+            buttonshowbycustomers.Location = new Point(20, 259);
+            buttonshowbycustomers.Name = "buttonshowbycustomers";
+            buttonshowbycustomers.Size = new Size(234, 52);
+            buttonshowbycustomers.TabIndex = 42;
+            buttonshowbycustomers.Text = "фильтрации товаров по покупателю(F)";
+            buttonshowbycustomers.UseVisualStyleBackColor = true;
+            buttonshowbycustomers.Click += buttonshowbycustomers_Click;
+            // 
+            // comboBoxCustomers
+            // 
+            comboBoxCustomers.FormattingEnabled = true;
+            comboBoxCustomers.Location = new Point(20, 213);
+            comboBoxCustomers.Name = "comboBoxCustomers";
+            comboBoxCustomers.Size = new Size(304, 28);
+            comboBoxCustomers.TabIndex = 41;
+            // 
+            // comboBoxManagers
+            // 
+            comboBoxManagers.FormattingEnabled = true;
+            comboBoxManagers.Location = new Point(20, 327);
+            comboBoxManagers.Name = "comboBoxManagers";
+            comboBoxManagers.Size = new Size(304, 28);
+            comboBoxManagers.TabIndex = 40;
+            // 
+            // buttonshowbymanagers
+            // 
+            buttonshowbymanagers.Cursor = Cursors.Hand;
+            buttonshowbymanagers.Location = new Point(20, 369);
+            buttonshowbymanagers.Name = "buttonshowbymanagers";
+            buttonshowbymanagers.Size = new Size(234, 52);
+            buttonshowbymanagers.TabIndex = 39;
+            buttonshowbymanagers.Text = "фильтрации товаров по менеджеру(F)";
+            buttonshowbymanagers.UseVisualStyleBackColor = true;
+            buttonshowbymanagers.Click += buttonshowbymanagers_Click;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(727, 305);
+            label12.Name = "label12";
+            label12.Size = new Size(108, 20);
+            label12.TabIndex = 37;
+            label12.Text = "Дата продажи";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(727, 328);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 36;
+            // 
+            // textBoxPrice
+            // 
+            textBoxPrice.Location = new Point(486, 345);
+            textBoxPrice.Name = "textBoxPrice";
+            textBoxPrice.Size = new Size(189, 27);
+            textBoxPrice.TabIndex = 35;
+            // 
+            // textBoxCount
+            // 
+            textBoxCount.Location = new Point(486, 305);
+            textBoxCount.Name = "textBoxCount";
+            textBoxCount.Size = new Size(189, 27);
+            textBoxCount.TabIndex = 34;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(351, 345);
+            label11.Name = "label11";
+            label11.Size = new Size(126, 20);
+            label11.TabIndex = 33;
+            label11.Text = "Цена за еденицу";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(351, 305);
+            label10.Name = "label10";
+            label10.Size = new Size(90, 20);
+            label10.TabIndex = 32;
+            label10.Text = "Количество";
+            // 
+            // textBoxCustomerName
+            // 
+            textBoxCustomerName.Location = new Point(486, 261);
+            textBoxCustomerName.Name = "textBoxCustomerName";
+            textBoxCustomerName.Size = new Size(189, 27);
+            textBoxCustomerName.TabIndex = 31;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(351, 261);
+            label7.Name = "label7";
+            label7.Size = new Size(90, 20);
+            label7.TabIndex = 30;
+            label7.Text = "Покупатель";
+            // 
+            // textBoxManager
+            // 
+            textBoxManager.Location = new Point(486, 218);
+            textBoxManager.Name = "textBoxManager";
+            textBoxManager.Size = new Size(189, 27);
+            textBoxManager.TabIndex = 28;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(351, 221);
+            label9.Name = "label9";
+            label9.Size = new Size(83, 20);
+            label9.TabIndex = 27;
+            label9.Text = "Менеджер";
+            // 
+            // buttonDeleteSale
+            // 
+            buttonDeleteSale.Cursor = Cursors.Hand;
+            buttonDeleteSale.Location = new Point(927, 214);
+            buttonDeleteSale.Name = "buttonDeleteSale";
+            buttonDeleteSale.Size = new Size(94, 67);
+            buttonDeleteSale.TabIndex = 25;
+            buttonDeleteSale.Text = "Удалить";
+            buttonDeleteSale.UseVisualStyleBackColor = true;
+            buttonDeleteSale.Click += buttonDeleteSale_Click;
+            // 
+            // buttonUpdateSale
+            // 
+            buttonUpdateSale.Cursor = Cursors.Hand;
+            buttonUpdateSale.Location = new Point(827, 214);
+            buttonUpdateSale.Name = "buttonUpdateSale";
+            buttonUpdateSale.Size = new Size(94, 67);
+            buttonUpdateSale.TabIndex = 24;
+            buttonUpdateSale.Text = "Обновить";
+            buttonUpdateSale.UseVisualStyleBackColor = true;
+            buttonUpdateSale.Click += buttonUpdateSale_Click;
+            // 
+            // buttonAddSale
+            // 
+            buttonAddSale.Cursor = Cursors.Hand;
+            buttonAddSale.Location = new Point(727, 214);
+            buttonAddSale.Name = "buttonAddSale";
+            buttonAddSale.Size = new Size(94, 67);
+            buttonAddSale.TabIndex = 23;
+            buttonAddSale.Text = "Добавить";
+            buttonAddSale.UseVisualStyleBackColor = true;
+            buttonAddSale.Click += buttonAddSale_Click;
+            // 
+            // dataGridView5
+            // 
+            dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView5.Location = new Point(8, 3);
+            dataGridView5.Name = "dataGridView5";
+            dataGridView5.RowHeadersWidth = 51;
+            dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView5.Size = new Size(1040, 191);
+            dataGridView5.TabIndex = 2;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1059, 425);
+            ClientSize = new Size(1059, 457);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "База данных Канцтовары";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -540,7 +763,11 @@
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).EndInit();
             ResumeLayout(false);
         }
 
@@ -580,12 +807,34 @@
         private Button buttonDeleteManager;
         private Button buttonUpdateManager;
         private Button buttonAddManger;
-        private Button button5;
-        private Button button6;
-        private Button button7;
+        private Button buttonDeleteCustomer;
+        private Button buttonUpdateCustomer;
+        private Button buttonAddCustomer;
         private Label label5;
         private TextBox textBoxManagers;
         private ComboBox comboBoxManager;
+        private ComboBox comboBoxManagers;
         private Button buttonshowbymanager;
+        private TabPage tabPage5;
+        private Button buttonDeleteSale;
+        private Button buttonUpdateSale;
+        private Button buttonAddSale;
+        private DataGridView dataGridView5;
+        private Label label6;
+        private TextBox textBoxCustomer;
+        private Label label11;
+        private Label label10;
+        private TextBox textBoxCustomerName;
+        private Label label7;
+        private TextBox textBoxManager;
+        private Label label9;
+        private TextBox textBoxPrice;
+        private TextBox textBoxCount;
+        private Label label12;
+        private DateTimePicker dateTimePicker1;
+        private Button buttonshowbymanagers;
+        private Button buttonshowbycustomers;
+        private ComboBox comboBoxCustomers;
+        private Button buttonLatestSale;
     }
 }

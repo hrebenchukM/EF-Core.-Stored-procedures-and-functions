@@ -115,144 +115,339 @@ VALUES
 (13, 3, 1, 60, 30.99, '2025-03-07'),
 (14, 4, 2, 25, 99.99, '2025-03-08');
 
-            Create function ProductsList(
-                @Product_Type nvarchar(255)
-            )
-              returns @returntable table
-              (
-                id int,
-                name nvarchar(100),
-	            product_type_id int ,
-                quantity int,
-	            cost decimal
-            )
-              as
-              BEGIN
-                INSERT  @returntable
-                SELECT id, name, product_type_id, quantity, cost
-	            FROM products 
-				WHERE product_type_id = (SELECT id FROM product_types WHERE name = @Product_Type)
-                RETURN
-              END
-              go
-
-              select * from ProductsList(N'Ручки')  
-			  
-
-
-			 
-			  
-           
-		   
-
-		  
-
-
-		    create procedure ShowProductsByType
-            @type nvarchar (255) as
-            select * from products
-            where product_type_id = (SELECT id FROM product_types WHERE name like @type) 
-            order by Name desc
-            go
-
-            execute ShowProductsByType 'Ручки' 
 
 
 
 
-			
-            create procedure Add_Product 
-			             @name nvarchar(255), 
-			             @product_type_name nvarchar(255),
-						 @quantity int,
-						 @cost decimal(10, 2)
-            as
-            INSERT INTO products  (name, product_type_id, quantity, cost)
-            VALUES  (@name, (SELECT id FROM product_types WHERE name = @product_type_name), @quantity, @cost)
+  create procedure Add_Product 
+	@name nvarchar(255), 
+    @product_type_name nvarchar(255),
+	@quantity int,
+	@cost decimal(10, 2)
+    as
+    INSERT INTO products  (name, product_type_id, quantity, cost)
+    VALUES  (@name, (SELECT id FROM product_types WHERE name = @product_type_name), @quantity, @cost)
         
 
 			
-            create procedure Add_Type
-			             @name nvarchar(255)
-            as
-            INSERT INTO product_types  (name)
-            VALUES  (@name)
+   create procedure Add_Type
+	@name nvarchar(255)
+    as
+    INSERT INTO product_types  (name)
+    VALUES  (@name)
         
-		   create procedure Add_Manager
-			             @name nvarchar(255)
-            as
-            INSERT INTO managers(name)
-            VALUES  (@name)
+
+   create procedure Add_Manager
+	@name nvarchar(255)
+    as
+    INSERT INTO managers(name)
+    VALUES  (@name)
+
+	
+   create procedure Add_Customer
+	@name nvarchar(255)
+    as
+    INSERT INTO customers(name)
+    VALUES  (@name)
 
 
 	
-	 
-           create procedure Delete_Product 
-           @name nvarchar (255) as
-           delete from products where name like @name 
-		   go
+  create procedure Add_Sale
+    @product_name nvarchar(255),
+	@manager_name nvarchar(255),
+	@customer_name nvarchar(255),
+	@quantity int,
+	@unit_price decimal(10, 2),
+	@date_sale date
+    as
+    INSERT INTO sales  (product_id,manager_id , customer_id, quantity, unit_price,date_sale)
+    VALUES  (
+	        (SELECT id FROM products WHERE name = @product_name),
+	        (SELECT id FROM managers WHERE name = @manager_name),
+			(SELECT id FROM customers WHERE name = @customer_name),
+			 @quantity, @unit_price,@date_sale)
+    go  
 
-		     create procedure Delete_Type 
-           @name nvarchar (255) as
-           delete from product_types where name like @name 
-		   go
 
-		    create procedure Delete_Manager 
-           @name nvarchar (255) as
-           delete from managers where name like @name 
-		   go
+    create procedure Update_Product 
+	 @oldname nvarchar(255),
+     @name nvarchar(255), 
+	 @product_type_name nvarchar(255),
+	 @quantity int,
+	 @cost decimal(10, 2)
+	 as
+     update products 
+	 set name = @name,
+	 product_type_id = (SELECT id FROM product_types WHERE name = @product_type_name),
+     quantity = @quantity,
+     cost = @cost
+	 where name = @oldname
+	 go
+
+
+
+ 
+	create procedure Update_Type 
+	 @oldname nvarchar(255),
+     @name nvarchar(255)
+	 as
+     update product_types 
+	 set name = @name
+	 where name = @oldname
+	 go
+
+
+
+    create procedure Update_Manager
+	 @oldname nvarchar(255),
+     @name nvarchar(255)
+	 as
+     update managers 
+	 set 
+	 name = @name
+	 where name = @oldname
+	 go
 		   
-            declare @name nvarchar(255)
-            set @name = '%Visual%Basic%'
-            execute Delete_Product @name 
-            go
+	 create procedure Update_Customer
+	 @oldname nvarchar(255),
+     @name nvarchar(255)
+	 as
+     update customers 
+	 set 
+	 name = @name
+	 where name = @oldname
+	 go
+
+
+	 
+    create procedure Update_Sale
+	 @oldname nvarchar(255),
+     @name nvarchar(255), 
+	 @oldmanager nvarchar(255),
+	 @manager nvarchar(255),
+	 @oldcustomer nvarchar(255),
+	 @customer nvarchar(255),
+	 @quantity int,
+	 @unit_price decimal(10, 2),
+	 @date_sale DATE
+	 as
+     update sales 
+	 set 
+	 product_id = (SELECT id FROM products WHERE name = @name),
+	 manager_id = (SELECT id FROM managers WHERE name = @manager),
+	 customer_id = (SELECT id FROM customers WHERE name = @customer),
+     quantity = @quantity,
+     unit_price = @unit_price,
+	 date_sale =@date_sale
+	 where product_id = (SELECT id FROM products WHERE name = @oldname) 
+	 AND manager_id = (SELECT id FROM managers WHERE name = @oldmanager)
+     AND customer_id = (SELECT id FROM customers WHERE name = @oldcustomer)
+	 go
+
+
+
+	create procedure Delete_Product 
+     @name nvarchar (255) as
+     delete from products where name like @name 
+	 go
+
+    declare @name nvarchar(255)
+    set @name = '%Visual%Basic%'
+    execute Delete_Product @name 
+    go
         
 
 
+	create procedure Delete_Type 
+     @name nvarchar (255) as
+     delete from product_types where name like @name 
+	 go
 
-		 create procedure Update_Product 
-		   @oldname nvarchar(255),
-           @name nvarchar(255), 
-		   @product_type_name nvarchar(255),
-		   @quantity int,
-		   @cost decimal(10, 2)
-		   as
-            update products 
-			set 
-			name = @name,
-			product_type_id = (SELECT id FROM product_types WHERE name = @product_type_name),
-            quantity = @quantity,
-            cost = @cost
-			where name = @oldname
-		   go
-
-
-
-
+		    
+    create procedure Delete_Manager 
+     @name nvarchar (255) as
+     delete from managers where name like @name 
+	 go
 		   
-		 create procedure Update_Type 
-		   @oldname nvarchar(255),
-           @name nvarchar(255)
-		   as
-            update product_types 
-			set 
-			name = @name
-			where name = @oldname
-		   go
+		    
+    create procedure Delete_Customer 
+     @name nvarchar (255) as
+     delete from customers where name like @name 
+	 go
+	
+	create procedure Delete_Sale 
+     @name nvarchar (255),
+	 @manager_name nvarchar(255),
+     @customer_name nvarchar(255)
+	 as
+     delete from sales
+	 where product_id = (SELECT id FROM products WHERE name like @name)
+      AND manager_id = (SELECT id FROM managers WHERE name = @manager_name)
+      AND customer_id = (SELECT id FROM customers WHERE name = @customer_name);
+	 go
+          
 
 
 
-		    create procedure Update_Manager
-		   @oldname nvarchar(255),
-           @name nvarchar(255)
-		   as
-            update managers 
-			set 
-			name = @name
-			where name = @oldname
-		   go
-		   
+ create procedure ShowProductsByType
+@type nvarchar (255) as
+select * from products
+where product_type_id = (SELECT id FROM product_types WHERE name like @type) 
+order by Name desc
+go
 
+execute ShowProductsByType 'Ручки' 
+
+
+
+
+
+
+
+  Create function ProductsList(@Product_Type nvarchar(255))
+ 
+  returns @returntable table
+(
+ id int,
+ name nvarchar(100),
+ product_type_id int ,
+ quantity int,
+ cost decimal
+)
+as
+BEGIN
+INSERT  @returntable
+SELECT id, name, product_type_id, quantity, cost
+FROM products 
+WHERE product_type_id = (SELECT id FROM product_types WHERE name = @Product_Type)
+RETURN
+END
+go
+
+
+
+
+
+
+  Create function AVGQuantityByType(@Product_Type nvarchar(255))
+ 
+  returns @returntable table
+(
+ id int,
+ name nvarchar(100),
+ product_type_id int ,
+ quantity int,
+ cost decimal
+)
+as
+BEGIN
+INSERT  @returntable
+SELECT id, name, product_type_id, (SELECT avg(quantity)
+ FROM products
+ where product_type_id = p.product_type_id) , cost
+FROM products p
+WHERE p.product_type_id = (
+SELECT id 
+FROM product_types
+WHERE name = @Product_Type)
+RETURN
+END
+go
+
+
+
+select * from ProductsList(N'Ручки')  
+
+
+
+
+
+  Create function SalesByManager(@Manager nvarchar(255))
+ 
+  returns @returntable table
+(
+ id int,
+ product_id int ,
+ manager_id int ,
+ customer_id int ,
+ quantity int,
+ unit_price decimal,
+ date_sale  DATE
+)
+as
+BEGIN
+INSERT  @returntable
+SELECT id, product_id, manager_id, customer_id, quantity, unit_price,date_sale
+FROM sales 
+WHERE manager_id = (SELECT id FROM managers   WHERE name = @Manager)
+RETURN
+END
+go
+   
+
+	
+
+  Create function SalesByCustomer(@Customer nvarchar(255))
+ 
+  returns @returntable table
+(
+ id int,
+ product_id int ,
+ manager_id int ,
+ customer_id int ,
+ quantity int,
+ unit_price decimal,
+ date_sale  DATE
+)
+as
+BEGIN
+INSERT  @returntable
+SELECT id, product_id, manager_id, customer_id, quantity, unit_price,date_sale
+FROM sales 
+WHERE customer_id = (SELECT id FROM customers   WHERE name = @Customer)
+RETURN
+END
+go
+   
+
+
+   
+
+  Create function LatestSale()
+ 
+  returns @returntable table
+(
+ id int,
+ product_id int ,
+ manager_id int ,
+ customer_id int ,
+ quantity int,
+ unit_price decimal,
+ date_sale  DATE
+)
+as
+BEGIN
+INSERT  @returntable
+SELECT id, product_id, manager_id, customer_id, quantity, unit_price,date_sale
+FROM sales 
+WHERE date_sale = (SELECT MAX(date_sale) FROM sales)
+RETURN
+END
+go
+   
+
+	
+
+
+			
+          
+	
+	 
+         
+
+
+
+		
            
              create view sum_of_quantity as
              SELECT SUM(quantity) as TotalQuantity, 
